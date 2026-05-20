@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sombra Molino — Heirloom Corn · Austin, TX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0A08;
+  --bone:#E8E3D8;
+  --bone-dim:#C4BFB2;
+  --ash:#141412;
+  --ash2:#1C1C1A;
+  --ash3:#252523;
+  --clay:#8A4B2A;
+  --maize:#C9A227;
+  --ember:#5B1F12;
+  --smoke:#5A5A58;
+  --corn-blue:#2E3A59;
+  --corn-yellow:#D9A625;
+  --corn-red:#8B3A2A;
+  --corn-purple:#4C2A5A;
+  --corn-pink:#C07A8C;
+  --corn-cream:#D4C9A8;
+}
+html{scroll-behavior:smooth}
+/* MOBILE RESPONSIVE */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--bone);transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(10,10,8,0.98);backdrop-filter:blur(12px);z-index:99;padding:24px 40px;flex-direction:column;gap:20px;border-bottom:1px solid #1A1A18}
+.mobile-menu a{font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;padding:8px 0;border-bottom:1px solid #1A1A18}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu.open{display:flex}
+
+@media(max-width:768px){
+  .hamburger{display:flex}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  nav{padding:0 24px}
+  .hero{padding:80px 24px 60px}
+  section{padding:60px 24px}
+  .story-grid{grid-template-columns:1fr;gap:40px}
+  .story-stats{grid-template-columns:1fr 1fr}
+  .corn-grid{grid-template-columns:1fr}
+  .order-grid{grid-template-columns:1fr !important}
+  .delivery-grid{grid-template-columns:1fr}
+  .partner-section{padding:48px 24px}
+  footer{padding:48px 24px 32px}
+  .footer-grid{grid-template-columns:1fr;gap:32px}
+  .hero-wordmark{font-size:clamp(64px,18vw,120px)}
+}
+@media(max-width:480px){
+  .story-stats{grid-template-columns:1fr 1fr}
+  .corn-grid{grid-template-columns:1fr}
+}
+
+body{background:var(--ink);color:var(--bone);font-family:'Inter',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid #1A1A18;padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:60px}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.12em;color:var(--bone)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--smoke);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--bone)}
+.nav-cta{background:var(--maize);color:var(--ink);font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;padding:10px 20px;text-decoration:none;transition:opacity 0.2s}
+.nav-cta:hover{opacity:0.85}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 60px 70px;position:relative;overflow:hidden;background:var(--ink)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(91,31,18,0.3) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(201,162,39,0.06) 0%,transparent 50%)}
+.hero-grain{position:absolute;inset:0;opacity:0.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--maize);margin-bottom:20px}
+.hero-wordmark{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,14vw,160px);letter-spacing:0.02em;line-height:0.9;color:var(--bone);margin-bottom:8px}
+.hero-sub{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,4vw,42px);letter-spacing:0.35em;color:var(--smoke);margin-bottom:36px}
+.hero-rule{width:50px;height:1px;background:var(--maize);margin-bottom:28px}
+.hero-desc{font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:var(--bone-dim);max-width:480px;line-height:1.75;margin-bottom:48px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:var(--bone);color:var(--ink);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:16px 32px;text-decoration:none;transition:background 0.2s}
+.btn-primary:hover{background:var(--maize)}
+.btn-ghost{border:1px solid var(--smoke);color:var(--bone-dim);font-size:11px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;padding:16px 32px;text-decoration:none;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--bone-dim);color:var(--bone)}
+.hero-badge{position:absolute;bottom:70px;right:60px;text-align:right}
+.hero-badge-inner{display:inline-block;border:1px solid #2A2A28;padding:16px 22px;text-align:left}
+.hero-badge-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--smoke);margin-bottom:6px}
+.hero-badge-name{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.08em;color:var(--bone)}
+.hero-badge-sub{font-size:10px;color:var(--smoke);margin-top:3px}
+
+/* SECTIONS */
+section{padding:90px 60px}
+.section-label{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--maize);display:flex;align-items:center;gap:14px;margin-bottom:48px}
+.section-label::after{content:'';flex:1;height:1px;background:#1E1E1C;max-width:300px}
+.section-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:0.04em;color:var(--bone);line-height:1;margin-bottom:20px}
+
+/* STORY */
+.story-section{background:var(--ash)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.story-text p{font-size:14px;color:var(--bone-dim);line-height:1.85;margin-bottom:16px}
+.story-text p strong{font-weight:500;color:var(--bone)}
+.story-quote{border-left:2px solid var(--ember);padding:28px 32px;background:var(--ash2);margin-top:40px}
+.story-quote blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:var(--bone);line-height:1.7}
+.story-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1A1A18;margin-top:0}
+.stat-box{background:var(--ash2);padding:28px;text-align:center}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--maize);line-height:1}
+.stat-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--smoke);margin-top:6px}
+
+/* CORN CATALOG */
+.catalog-section{background:var(--ink)}
+.corn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1px;background:#1A1A18;margin-top:0}
+.corn-card{background:var(--ash);padding:32px;position:relative;overflow:hidden;transition:background 0.3s}
+.corn-card:hover{background:var(--ash2)}
+.corn-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.corn-color-bar{height:3px;position:absolute;top:0;left:0;right:0}
+.corn-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.corn-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:0.04em;color:var(--bone);line-height:1}
+.corn-price{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--maize);letter-spacing:0.02em}
+.corn-landrace{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--smoke);margin-bottom:16px}
+.corn-dot-row{display:flex;gap:6px;margin-bottom:20px}
+.corn-kernel{width:10px;height:14px;border-radius:50% 50% 45% 45%;opacity:0.85}
+.corn-detail{font-size:11px;color:var(--smoke);margin-bottom:5px;display:flex;gap:8px}
+.corn-detail span:first-child{color:#3A3A38;min-width:60px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase}
+.corn-detail span:last-child{color:var(--bone-dim)}
+.corn-uses{margin-top:14px;padding-top:14px;border-top:1px solid #222}
+.corn-uses-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--smoke);margin-bottom:8px}
+.corn-uses-list{display:flex;flex-wrap:wrap;gap:5px}
+.use-tag{font-size:10px;padding:3px 9px;border:1px solid #2A2A28;color:#4A4A48;letter-spacing:0.05em}
+
+/* ORDERING */
+.order-section{background:var(--ash)}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:0}
+.order-card{padding:40px;border:1px solid #1E1E1C;position:relative}
+.order-card.featured{border-color:var(--maize)}
+.order-card.featured::before{content:'RECOMMENDED';position:absolute;top:-1px;left:40px;background:var(--maize);color:var(--ink);font-size:9px;font-weight:700;letter-spacing:0.2em;padding:4px 12px}
+.order-icon{font-size:28px;margin-bottom:20px}
+.order-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--bone);margin-bottom:12px}
+.order-desc{font-size:13px;color:var(--bone-dim);line-height:1.75;margin-bottom:24px}
+.order-steps{list-style:none;margin-bottom:28px}
+.order-steps li{font-size:12px;color:var(--bone-dim);padding:10px 0;border-bottom:1px solid #1A1A18;display:flex;align-items:flex-start;gap:14px}
+.order-steps li:last-child{border-bottom:none}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--maize);min-width:20px}
+.order-btn{display:block;text-align:center;padding:16px;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;transition:all 0.2s}
+.order-btn-wa{background:#25D366;color:#fff}
+.order-btn-wa:hover{background:#20c45a}
+.order-btn-email{background:transparent;color:var(--bone);border:1px solid var(--smoke)}
+.order-btn-email:hover{border-color:var(--bone);background:var(--ash2)}
+
+/* DELIVERY */
+.delivery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#1A1A18;margin-top:48px}
+.delivery-box{background:var(--ash2);padding:28px}
+.delivery-day{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.04em;color:var(--bone);margin-bottom:4px}
+.delivery-covers{font-size:11px;color:var(--bone-dim);margin-bottom:12px}
+.delivery-cutoff{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--maize);padding:6px 12px;background:rgba(201,162,39,0.08);display:inline-block}
+
+/* MIN ORDER */
+.min-order-bar{background:var(--ash2);border-left:3px solid var(--clay);padding:24px 32px;margin-top:48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.min-order-text{font-size:13px;color:var(--bone-dim)}
+.min-order-text strong{color:var(--bone);font-weight:500}
+.min-order-note{font-size:11px;color:var(--smoke);font-style:italic}
+
+/* PRICE TABLE */
+.price-section{background:var(--ink)}
+.price-table{width:100%;border-collapse:collapse;margin-top:0}
+.price-table th{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--smoke);text-align:left;padding:14px 20px;border-bottom:1px solid #1A1A18;font-weight:400}
+.price-table td{font-size:13px;color:var(--bone-dim);padding:16px 20px;border-bottom:1px solid #111}
+.price-table tr:hover td{background:var(--ash);color:var(--bone)}
+.price-table td:first-child{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.04em;color:var(--bone);font-size:16px}
+.price-table td:last-child{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--maize);letter-spacing:0.02em;text-align:right}
+.color-pill{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.price-note{font-size:11px;color:var(--smoke);font-style:italic;margin-top:20px;padding:16px 20px;border-top:1px solid #1A1A18}
+
+/* PARTNERS */
+.partner-section{background:var(--ash);padding:70px 60px;text-align:center}
+.partner-badge{display:inline-block;border:1px solid #2A2A28;padding:30px 48px;text-align:left;max-width:500px}
+.partner-bib{width:48px;height:48px;background:var(--maize);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--ink);letter-spacing:0.05em;margin-bottom:16px}
+.partner-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.04em;color:var(--bone);margin-bottom:4px}
+.partner-desc{font-size:12px;color:var(--smoke)}
+.partner-award{font-size:11px;color:var(--maize);margin-top:10px;letter-spacing:0.1em;text-transform:uppercase}
+
+/* FOOTER */
+footer{background:#060604;padding:60px;border-top:1px solid #111}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-col h4{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.1em;color:var(--bone);margin-bottom:16px}
+.footer-col p,.footer-col a{font-size:12px;color:var(--smoke);line-height:1.9;text-decoration:none;display:block;transition:color 0.2s}
+.footer-col a:hover{color:var(--bone-dim)}
+.footer-bottom{border-top:1px solid #111;padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.2em;color:#2A2A28}
+.footer-tagline{font-size:11px;color:#2A2A28;letter-spacing:0.15em;font-style:italic}
+
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:32px;right:32px;z-index:200;display:flex;align-items:center;gap:12px;background:#25D366;padding:14px 22px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.3);transition:transform 0.2s,box-shadow 0.2s}
+.wa-float:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(37,211,102,0.4)}
+.wa-float svg{width:20px;height:20px;fill:#fff}
+.wa-float span{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#fff}
+
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{padding:80px 24px 50px}.hero-badge{display:none}
+  section{padding:60px 24px}
+  .story-grid,.order-grid,.footer-grid{grid-template-columns:1fr}
+  .delivery-grid{grid-template-columns:1fr}
+  .corn-grid{grid-template-columns:1fr}
+  .hero-wordmark{font-size:72px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SOMBRA MOLINO</div>
+  <div class="nav-links">
+    <a href="#catalog">Corn Catalog</a>
+    <a href="#ordering">How to Order</a>
+    <a href="#delivery">Delivery</a>
+  </div>
+  <a href="#ordering" class="nav-cta">Place Order</a>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#story" onclick="closeMenu()">Our Story</a>
+  <a href="#catalog" onclick="closeMenu()">Corn Catalog</a>
+  <a href="#ordering" onclick="closeMenu()">How to Order</a>
+  <a href="mailto:sombramolino@gmail.com" onclick="closeMenu()">Contact</a>
+</div>
+<script>
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Austin, Texas · 100% Organic · Non-GMO · Vegan · Gluten-Free · Ancestral Nixtamalization</div>
+    <div class="hero-wordmark">SOMBRA</div>
+    <div class="hero-sub">M &nbsp; O &nbsp; L &nbsp; I &nbsp; N &nbsp; O</div>
+    <div class="hero-rule"></div>
+    <div class="hero-desc">Stone-ground heirloom masa shaped by tradition — honoring the hands and land that came before us.</div>
+    <div class="hero-actions">
+      <a href="#catalog" class="btn-primary">View Corn Catalog</a>
+      <a href="#ordering" class="btn-ghost">Set Up Your Account</a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story-section" id="story">
+  <div class="section-label">Our Story</div>
+  <div class="story-grid">
+    <div class="story-text">
+      <h2 class="section-h2">Born from<br>Shadow.</h2>
+      <p>Maíz has always been more than just food to us. It carries stories of families, traditions, hard work, and the land it comes from.</p>
+      <p>Sombra Molino started with a simple intention: to honor that tradition, make masa the with care, and have high quality masa be accessible to those who care about what they put in a plate. We work directly with farmers and cooperatives in Tlaxcala, Oaxaca, Campeche, and Yucatán who have been growing and protecting native corn for generations. Their care and knowledge are at the center of everything we do.</p>
+      <p>We bring that corn to Austin and prepare it through nixtamalization — the traditional process that's been used for centuries. No shortcuts, no masa harina, no unnecessary additives. Just pure 100% heirloom corn, water, high purity cal, time, and lots care.</p>
+      <p>The result is masa with real flavor, texture, and connection to where it came from.</p>
+      <p>Sombra Molino is rooted in the Rio Grande Valley, inspired by the heartland of Mexico, and made by hand in Austin, Texas.</p>
+      <p><strong>100% native strains of maíz. Non-GMO. No Preservatives. Gluten-free. No colors added.</strong></p>
+      <p>Made with intention, and meant to be shared from our kitchens to yours.</p>
+      <div class="story-quote">
+        <blockquote>"From shadow comes nourishment."</blockquote>
+      </div>
+    </div>
+    <div>
+      <div class="story-stats">
+        <div class="stat-box">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Organic · Non-GMO</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">MX</div>
+          <div class="stat-label">Corn from Mexico</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3×</div>
+          <div class="stat-label">Weekly Deliveries</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Generations of Care</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog-section" id="catalog">
+  <div class="section-label">Corn Catalog</div>
+  <h2 class="section-h2">Heirloom<br>Varieties.</h2>
+  <p style="font-size:14px;color:var(--bone-dim);max-width:560px;margin-bottom:48px;line-height:1.8">Each variety is sourced directly from indigenous farming cooperatives. Landrace corn — meaning these are <em>place-specific</em> varieties that exist nowhere else, tended by the same families for centuries.</p>
+
+  <div class="corn-grid">
+
+    <!-- CÓNICO AZUL -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:var(--corn-blue)"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Cónico Azul</div>
+          <div class="corn-landrace">Landrace: Cónico</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#2E3A59"></div>
+        <div class="corn-kernel" style="background:#3A4868"></div>
+        <div class="corn-kernel" style="background:#252E4A"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Ixtenco & Huamantla, Tlaxcala</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Angoa García, Esteban Zempoalteca</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">quesadillas</span><span class="use-tag">tortillas</span><span class="use-tag">pinole</span><span class="use-tag">atole</span><span class="use-tag">sopes</span><span class="use-tag">tlacoyos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOLITA AMARILLO -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:var(--corn-yellow)"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Bolita Amarillo</div>
+          <div class="corn-landrace">Landrace: Bolita</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#D9A625"></div>
+        <div class="corn-kernel" style="background:#C89A1F"></div>
+        <div class="corn-kernel" style="background:#E8B82E"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Zegache, Oaxaca</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Xhub Guldan Zegache cooperative</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">tlayudas</span><span class="use-tag">tostadas</span><span class="use-tag">blandas</span><span class="use-tag">memelas</span><span class="use-tag">sopes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAC CHOB ROJO -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:var(--corn-red)"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Chac Chob Rojo</div>
+          <div class="corn-landrace">Landrace: Chac Chob</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#8B3A2A"></div>
+        <div class="corn-kernel" style="background:#A04535"></div>
+        <div class="corn-kernel" style="background:#762E20"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Calakmul, Campeche & Yucatán</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Traspatio Maya collective</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">pozole</span><span class="use-tag">tortillas</span><span class="use-tag">panucho</span><span class="use-tag">salbut</span><span class="use-tag">chimole</span><span class="use-tag">atole</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CÓNICO MORADO -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:var(--corn-purple)"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Cónico Morado</div>
+          <div class="corn-landrace">Landrace: Cónico</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#4C2A5A"></div>
+        <div class="corn-kernel" style="background:#5E3570"></div>
+        <div class="corn-kernel" style="background:#3A1F46"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Ixtenco & Huamantla, Tlaxcala</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Angoa García, Hernández Díaz</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">atole agrio</span><span class="use-tag">tortillas</span><span class="use-tag">gorditas</span><span class="use-tag">sopes</span><span class="use-tag">pinole</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CÓNICO ROSA -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:var(--corn-pink)"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Cónico Rosa</div>
+          <div class="corn-landrace">Landrace: Cónico</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#C07A8C"></div>
+        <div class="corn-kernel" style="background:#D08A9C"></div>
+        <div class="corn-kernel" style="background:#A86878"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Ixtenco y Huamantla, Tlaxcala</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Angoa García, Esteban Zempoalteca</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">tortillas</span><span class="use-tag">pinole</span><span class="use-tag">atole</span><span class="use-tag">sopes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOLITA CREMOSO -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:var(--corn-cream)"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Bolita Cremoso</div>
+          <div class="corn-landrace">Landrace: Bolita</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#D4C9A8"></div>
+        <div class="corn-kernel" style="background:#C8BCA0"></div>
+        <div class="corn-kernel" style="background:#E0D5B8"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Zegache, Oaxaca</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Xhub Guldan Zegache cooperative</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">tlayudas</span><span class="use-tag">atole</span><span class="use-tag">tejate</span><span class="use-tag">nicuatole</span><span class="use-tag">gorditas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOLITA AZUL -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:#3A5080"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Bolita Azul</div>
+          <div class="corn-landrace">Landrace: Bolita</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#3A5080"></div>
+        <div class="corn-kernel" style="background:#2E4068"></div>
+        <div class="corn-kernel" style="background:#4A6090"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Zegache, Oaxaca</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Xhub Guldan Zegache cooperative</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">quesadillas</span><span class="use-tag">tlayudas</span><span class="use-tag">blandas</span><span class="use-tag">memelas</span><span class="use-tag">atole</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHALQUEÑO CREMOSO -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:#C8B890"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Chalqueño Cremoso</div>
+          <div class="corn-landrace">Landrace: Chalqueño</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#C8B890"></div>
+        <div class="corn-kernel" style="background:#B8A880"></div>
+        <div class="corn-kernel" style="background:#D8C8A0"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Huehuecalco, State of Mexico</span></div>
+      <div class="corn-detail"><span>Farmers</span><span>Juárez Mayorga, Mayorga Rosas families</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">tortillas</span><span class="use-tag">atole</span><span class="use-tag">tamales</span><span class="use-tag">sopes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EH HUB MORADO -->
+    <div class="corn-card">
+      <div class="corn-color-bar" style="background:#6B3A7A"></div>
+      <div class="corn-header">
+        <div>
+          <div class="corn-name">Eh Hub Morado</div>
+          <div class="corn-landrace">Landrace: Eh Hub</div>
+        </div>
+      </div>
+      <div class="corn-dot-row">
+        <div class="corn-kernel" style="background:#6B3A7A"></div>
+        <div class="corn-kernel" style="background:#7A4A8A"></div>
+        <div class="corn-kernel" style="background:#582A66"></div>
+      </div>
+      <div class="corn-detail"><span>Origin</span><span>Yucatán Peninsula</span></div>
+      <div class="corn-detail"><span>Note</span><span>Limited availability</span></div>
+      <div class="corn-uses">
+        <div class="corn-uses-label">Traditional Uses</div>
+        <div class="corn-uses-list">
+          <span class="use-tag">tortillas</span><span class="use-tag">ceremonial masa</span><span class="use-tag">pozole</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ORDERING -->
+<section class="order-section" id="ordering">
+  <div class="section-label">How to Order</div>
+  <h2 class="section-h2">Set Up Your<br>Account.</h2>
+  <p style="font-size:14px;color:var(--bone-dim);max-width:520px;margin-bottom:48px;line-height:1.8">We keep ordering simple. Once your account is set up, place your orders directly by email — no portals, no friction.</p>
+
+  <div class="order-grid" style="grid-template-columns:1fr;max-width:560px">
+
+    <div class="order-card">
+      <div class="order-icon">✉️</div>
+      <div class="order-title">Email / Account Setup</div>
+      <div class="order-desc">To set up your business account or place detailed orders — email us directly. We respond within 24 hours on business days.</div>
+      <ol class="order-steps">
+        <li><span class="step-num">1</span>Email us to open your account &amp; get started</li>
+        <li><span class="step-num">2</span>Tell us your weekly volume estimate per variety</li>
+        <li><span class="step-num">3</span>We align on delivery days and first delivery date</li>
+        <li><span class="step-num">4</span>You're on the schedule — order weekly from there</li>
+      </ol>
+      <a href="mailto:sombramolino@gmail.com" class="order-btn order-btn-email">sombramolino@gmail.com →</a>
+    </div>
+
+  </div>
+
+  <!-- DELIVERY SCHEDULE -->
+  <div style="margin-top:64px">
+    <div class="section-label" style="margin-bottom:32px">Delivery Schedule</div>
+    <div class="delivery-grid">
+      <div class="delivery-box">
+        <div class="delivery-day">Tuesday</div>
+        <div class="delivery-covers">Covers Tue & Wed</div>
+        <div class="delivery-cutoff">Order by Sat 5pm CST</div>
+      </div>
+      <div class="delivery-box">
+        <div class="delivery-day">Thursday</div>
+        <div class="delivery-covers">Covers Thu & Fri</div>
+        <div class="delivery-cutoff">Order by Tue 5pm CST</div>
+      </div>
+      <div class="delivery-box">
+        <div class="delivery-day">Saturday</div>
+        <div class="delivery-covers">Covers Sat, Sun & Mon</div>
+        <div class="delivery-cutoff">Order by Thu 5pm CST</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER BADGE -->
+<div class="partner-section">
+  <div style="margin-bottom:16px;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--smoke)">Current Partners</div>
+  <div class="partner-badge">
+    <div class="partner-bib">M</div>
+    <div class="partner-name"><a href="https://www.veracruzfonda.com" target="_blank" rel="noopener" style="color:var(--bone);text-decoration:none;border-bottom:1px solid var(--maize)">Veracruz Fonda &amp; Bar</a></div>
+    <div class="partner-desc">Austin, Texas · Sisters Reyna &amp; Maritza Vazquez</div>
+    <div class="partner-award">Michelin Bib Gourmand · Masa Program by Sombra Molino</div>
+  </div>
+  <p style="margin-top:32px;font-size:13px;color:var(--smoke);font-style:italic;font-family:'Playfair Display',serif">"Transforming their masa program — from industrial to ancestral."</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Sombra Molino</h4>
+      <p>Heirloom corn. Ancestral technique.<br>Modern purpose.</p>
+      <p style="margin-top:12px">Austin, Texas<br>Rooted in the Rio Grande Valley</p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:sombramolino@gmail.com">sombramolino@gmail.com</a>
+
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#catalog">Corn Catalog</a>
+      
+      <a href="#ordering">How to Order</a>
+      <a href="#story">Our Story</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo">SOMBRA MOLINO</div>
+    <div class="footer-tagline">"For the hands behind the food." · Austin, TX</div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
